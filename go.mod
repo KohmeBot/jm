@@ -1,6 +1,6 @@
 module github.com/kohmebot/jm
 
-go 1.24.2
+go 1.23.1
 
 require (
 	github.com/kohmebot/pkg v1.0.1

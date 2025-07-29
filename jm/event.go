@@ -78,7 +78,7 @@ func (p *PluginJM) SetOnJM(engine *zero.Engine) {
 			msg.SplitEmpty(
 				message.Reply(mid),
 				message.At(uid),
-				message.Text(fmt.Sprintf("下载完成，航班启航🛫")),
+				message.Text(fmt.Sprintf("%d 下载完成，航班启航🛫", aid)),
 			)
 			ctx.Send(msg)
 		})
