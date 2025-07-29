@@ -37,7 +37,7 @@ func (s *Service) Ping() error {
 
 // Download 下载 PDF 并返回 base64 字符串
 func (s *Service) Download(id int64) (string, error) {
-	url := fmt.Sprintf("%s/download?id=%d", s.Address, id)
+	url := s.DownloadUrl(id)
 	resp, err := s.client.Get(url)
 	if err != nil {
 		return "", fmt.Errorf("下载请求失败: %w", err)
@@ -56,4 +56,8 @@ func (s *Service) Download(id int64) (string, error) {
 
 	base64Str := base64.StdEncoding.EncodeToString(data)
 	return base64Str, nil
+}
+
+func (s *Service) DownloadUrl(id int64) string {
+	return fmt.Sprintf("%s/download?id=%d", s.Address, id)
 }

@@ -67,13 +67,13 @@ func (p *PluginJM) SetOnJM(engine *zero.Engine) {
 				}
 				p.t.Done(uid, mid)
 			}()
-			var b64 string
-			b64, err = p.svr.Download(aid)
-			if err != nil {
+
+			mid = ctx.Send(message.File(p.svr.DownloadUrl(aid), fmt.Sprintf("%d.pdf", aid)))
+			if mid.ID() == 0 {
+				err = fmt.Errorf("文件发送失败")
 				return
 			}
 
-			mid = ctx.Send(message.File(b64, fmt.Sprintf("%d.pdf", aid)))
 			var msg chain.MessageChain
 			msg.SplitEmpty(
 				message.Reply(mid),
