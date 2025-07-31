@@ -58,7 +58,7 @@ func (p *PluginJM) SetOnJM(engine *zero.Engine) {
 
 		gopool.Go(func() {
 			var err error
-			var mid message.MessageID
+			var mid message.ID
 			defer func() {
 				if err != nil {
 					p.env.Error(ctx, err)

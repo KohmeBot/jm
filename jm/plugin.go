@@ -56,7 +56,7 @@ func (p *PluginJM) Commands() fmt.Stringer {
 }
 
 func (p *PluginJM) Version() uint64 {
-	return uint64(version.NewVersion(0, 0, 11))
+	return uint64(version.NewVersion(0, 0, 12))
 }
 
 func (p *PluginJM) OnBoot() {
