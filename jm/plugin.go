@@ -16,7 +16,7 @@ type PluginJM struct {
 	svr  *Service
 }
 
-func NewPluginJM() plugin.Plugin {
+func NewPlugin() plugin.Plugin {
 	return new(PluginJM)
 }
 
