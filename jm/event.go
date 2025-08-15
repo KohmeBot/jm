@@ -1,6 +1,7 @@
 package jm
 
 import (
+	"context"
 	"fmt"
 	"github.com/kohmebot/pkg/chain"
 	"github.com/kohmebot/pkg/gopool"
@@ -9,6 +10,7 @@ import (
 	"github.com/wdvxdr1123/ZeroBot/message"
 	"strconv"
 	"strings"
+	"time"
 )
 
 func (p *PluginJM) SetOnJM(engine *zero.Engine) {
@@ -67,8 +69,13 @@ func (p *PluginJM) SetOnJM(engine *zero.Engine) {
 				}
 				p.t.Done(uid, mid)
 			}()
-
-			mid = ctx.Send(message.File(p.svr.DownloadUrl(aid), fmt.Sprintf("%d.pdf", aid)))
+			c, cancel := context.WithTimeout(context.Background(), 10*time.Minute)
+			defer cancel()
+			rsp := ctx.CallActionWithContext(c, "send_group_msg", zero.Params{ // 调用并保存返回值
+				"group_id": ctx.Event.GroupID,
+				"message":  message.File(p.svr.DownloadUrl(aid), fmt.Sprintf("%d.pdf", aid)),
+			}).Data.Get("message_id")
+			mid = message.NewMessageIDFromInteger(rsp.Int())
 			if mid.ID() == 0 {
 				err = fmt.Errorf("文件发送失败")
 				return

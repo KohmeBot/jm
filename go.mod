@@ -5,11 +5,11 @@ go 1.23.1
 require (
 	github.com/kohmebot/pkg v1.0.2
 	github.com/kohmebot/plugin v1.2.5
-	github.com/wdvxdr1123/ZeroBot v1.8.1
+	github.com/wdvxdr1123/ZeroBot v1.8.2-0.20250811162120-dd69839a64b9
 )
 
 require (
-	github.com/FloatTech/ttl v0.0.0-20240716161252-965925764562 // indirect
+	github.com/FloatTech/ttl v0.0.0-20250224045156-012b1463287d // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/panjf2000/ants/v2 v2.10.0 // indirect
@@ -18,7 +18,7 @@ require (
 	github.com/tidwall/match v1.1.1 // indirect
 	github.com/tidwall/pretty v1.2.1 // indirect
 	golang.org/x/sync v0.8.0 // indirect
-	golang.org/x/sys v0.26.0 // indirect
+	golang.org/x/sys v0.35.0 // indirect
 	golang.org/x/text v0.19.0 // indirect
 	gorm.io/gorm v1.25.12 // indirect
 )
