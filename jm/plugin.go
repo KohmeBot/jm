@@ -1,11 +1,10 @@
 package jm
 
 import (
-	"fmt"
-	"github.com/kohmebot/pkg/command"
-	"github.com/kohmebot/pkg/version"
-	"github.com/kohmebot/plugin"
+	"github.com/kohmebot/pkg/chain"
+	"github.com/kohmebot/plugin/v2"
 	zero "github.com/wdvxdr1123/ZeroBot"
+	"github.com/wdvxdr1123/ZeroBot/message"
 	"time"
 )
 
@@ -20,7 +19,7 @@ func NewPlugin() plugin.Plugin {
 	return new(PluginJM)
 }
 
-func (p *PluginJM) Init(engine *zero.Engine, env plugin.Env) error {
+func (p *PluginJM) OnInit(engine plugin.Engine, env plugin.Env) error {
 	p.env = env
 
 	err := p.env.GetConf(&p.conf)
@@ -45,18 +44,20 @@ func (p *PluginJM) Name() string {
 	return "jm"
 }
 
-func (p *PluginJM) Description() string {
-	return "你的副机长"
-}
+func (p *PluginJM) OnHelp(ctx *zero.Ctx) {
+	var msg chain.MessageChain
 
-func (p *PluginJM) Commands() fmt.Stringer {
-	return command.NewCommands(
-		command.NewCommand("下载jm pdf", "jm"),
+	msg.Split(
+		message.Text("jm 插件所有命令"),
+		message.Text("jm <jm code>：下载jm pdf"),
 	)
+
+	ctx.Send(msg)
 }
 
-func (p *PluginJM) Version() uint64 {
-	return uint64(version.NewVersion(0, 0, 22))
+func (p *PluginJM) Version() string {
+	return "v0.1.0"
+
 }
 
 func (p *PluginJM) OnBoot() {

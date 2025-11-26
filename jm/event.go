@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/kohmebot/pkg/chain"
 	"github.com/kohmebot/pkg/gopool"
+	"github.com/kohmebot/plugin/v2"
 	zero "github.com/wdvxdr1123/ZeroBot"
 	"github.com/wdvxdr1123/ZeroBot/extension"
 	"github.com/wdvxdr1123/ZeroBot/message"
@@ -13,7 +14,7 @@ import (
 	"time"
 )
 
-func (p *PluginJM) SetOnJM(engine *zero.Engine) {
+func (p *PluginJM) SetOnJM(engine plugin.Engine) {
 	engine.OnCommand("jm", p.env.Groups().Rule()).SetBlock(true).Handle(func(ctx *zero.Ctx) {
 		var cmd extension.CommandModel
 		err := ctx.Parse(&cmd)
