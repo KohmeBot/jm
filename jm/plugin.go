@@ -19,6 +19,10 @@ func NewPlugin() plugin.Plugin {
 	return new(PluginJM)
 }
 
+func (p *PluginJM) ConfigModel() any {
+	return new(Config)
+}
+
 func (p *PluginJM) OnInit(engine plugin.Engine, env plugin.Env) error {
 	p.env = env
 
@@ -56,7 +60,7 @@ func (p *PluginJM) OnHelp(ctx *zero.Ctx) {
 }
 
 func (p *PluginJM) Version() string {
-	return "v0.1.0"
+	return "v0.1.1"
 
 }
 
